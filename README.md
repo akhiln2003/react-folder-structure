@@ -6,204 +6,161 @@ A comprehensive and scalable folder structure for React applications. This struc
 ## 📁 Root Structure
 ```bash
 src/
-├── assets/              # Static assets (images, fonts, styles)
-├── components/          # Shared components
-├── features/           # Feature-based modules
-├── hooks/              # Custom React hooks
-├── services/           # API and services
-├── store/              # State management
-├── utils/              # Utility functions
-├── pages/              # Application pages
-├── routes/             # Routing configuration
-├── config/             # App configuration
-├── types/              # TypeScript definitions
-├── App.tsx             # Root component
-└── index.tsx           # Entry point
-```
-
-## 📂 Directory Details
-
-### `assets/`
-```bash
-assets/
-├── images/
-│   ├── logos/          # Logo variations
-│   ├── icons/          # Icon assets
-│   └── backgrounds/    # Background images
-├── fonts/
-│   ├── roboto/         # Font family files
-│   └── poppins/
-└── styles/
-    ├── global.css      # Global styles
-    ├── variables.css   # CSS variables
-    ├── animations.css  # Global animations
-    └── themes/
-        ├── light.css   # Light theme
-        └── dark.css    # Dark theme
-```
-
-### `components/`
-```bash
-components/
-├── common/             # Shared components
-│   ├── Button/
+├── assets/
+│   ├── images/
+│   │   ├── logos/
+│   │   ├── icons/
+│   │   └── backgrounds/
+│   ├── fonts/
+│   │   ├── roboto/
+│   │   └── poppins/
+│   └── styles/
+│       ├── global.css          # Global styles
+│       ├── variables.css       # CSS variables
+│       ├── animations.css      # Global animations
+│       └── themes/
+│           ├── light.css
+│           └── dark.css
+│
+├── components/
+│   ├── common/                 # Shared components
+│   │   ├── Button/
+│   │   │   ├── index.ts       # Export file
+│   │   │   ├── Button.tsx     # Main component
+│   │   │   ├── Button.test.tsx
+│   │   │   ├── Button.stories.tsx  # Storybook stories
+│   │   │   ├── Button.module.css
+│   │   │   └── types.ts       # Component types
+│   │   ├── Input/
+│   │   ├── Modal/
+│   │   ├── Card/
+│   │   ├── Table/
+│   │   └── Form/
+│   │       ├── TextField/
+│   │       ├── Select/
+│   │       ├── Checkbox/
+│   │       └── RadioGroup/
+│   │
+│   └── layout/
+│       ├── Header/
+│       │   ├── index.ts
+│       │   ├── Header.tsx
+│       │   ├── components/    # Header-specific components
+│       │   │   ├── Navigation/
+│       │   │   └── UserMenu/
+│       │   └── styles.module.css
+│       ├── Footer/
+│       ├── Sidebar/
+│       └── PageWrapper/
+│
+├── features/                   # Feature-based modules
+│   ├── auth/
+│   │   ├── components/
+│   │   │   ├── LoginForm/
+│   │   │   ├── RegisterForm/
+│   │   │   └── ForgotPassword/
+│   │   ├── services/
+│   │   │   ├── authService.ts
+│   │   │   └── authApi.ts
+│   │   ├── hooks/
+│   │   │   ├── useAuth.ts
+│   │   │   └── useAuthForm.ts
+│   │   ├── store/
+│   │   │   ├── authSlice.ts
+│   │   │   └── authSelectors.ts
+│   │   └── types/
+│   │       └── auth.types.ts
+│   │
+│   └── dashboard/
+│       ├── components/
+│       │   ├── DashboardStats/
+│       │   ├── RecentActivity/
+│       │   └── Charts/
+│       ├── services/
+│       ├── hooks/
+│       └── types/
+│
+├── hooks/                      # Global custom hooks
+│   ├── useApi/
 │   │   ├── index.ts
-│   │   ├── Button.tsx
-│   │   ├── Button.test.tsx
-│   │   ├── Button.stories.tsx
-│   │   ├── Button.module.css
+│   │   ├── useApi.ts
 │   │   └── types.ts
-│   ├── Input/
-│   ├── Modal/
-│   ├── Card/
-│   ├── Table/
-│   └── Form/
-│       ├── TextField/
-│       ├── Select/
-│       ├── Checkbox/
-│       └── RadioGroup/
-└── layout/
-    ├── Header/
-    │   ├── index.ts
-    │   ├── Header.tsx
-    │   ├── components/
-    │   │   ├── Navigation/
-    │   │   └── UserMenu/
-    │   └── styles.module.css
-    ├── Footer/
-    ├── Sidebar/
-    └── PageWrapper/
-```
-
-### `features/`
-```bash
-features/
-├── auth/              # Authentication feature
-│   ├── components/
-│   │   ├── LoginForm/
-│   │   ├── RegisterForm/
-│   │   └── ForgotPassword/
-│   ├── services/
-│   │   ├── authService.ts
-│   │   └── authApi.ts
-│   ├── hooks/
-│   │   ├── useAuth.ts
-│   │   └── useAuthForm.ts
-│   ├── store/
-│   │   ├── authSlice.ts
-│   │   └── authSelectors.ts
+│   ├── useLocalStorage/
+│   ├── useDebounce/
+│   └── useMediaQuery/
+│
+├── services/
+│   ├── api/
+│   │   ├── client/
+│   │   │   ├── index.ts
+│   │   │   ├── axios.ts       # Axios instance setup
+│   │   │   └── interceptors.ts
+│   │   ├── endpoints.ts
+│   │   └── types/
+│   │       └── api.types.ts
+│   └── storage/
+│       ├── localStorage.ts
+│       └── sessionStorage.ts
+│
+├── store/                      # State management
+│   ├── slices/
+│   │   ├── user/
+│   │   │   ├── userSlice.ts
+│   │   │   └── userSelectors.ts
+│   │   └── app/
+│   │       ├── appSlice.ts
+│   │       └── appSelectors.ts
+│   ├── middleware/
+│   │   └── logger.ts
+│   └── store.ts
+│
+├── utils/
+│   ├── helpers/
+│   │   ├── date.ts
+│   │   ├── string.ts
+│   │   ├── number.ts
+│   │   └── validation.ts
+│   ├── constants/
+│   │   ├── routes.ts
+│   │   ├── config.ts
+│   │   └── api.ts
 │   └── types/
-│       └── auth.types.ts
-└── dashboard/         # Dashboard feature
-    ├── components/
-    │   ├── DashboardStats/
-    │   ├── RecentActivity/
-    │   └── Charts/
-    ├── services/
-    ├── hooks/
-    └── types/
-```
-
-### `hooks/`
-```bash
-hooks/
-├── useApi/
-│   ├── index.ts
-│   ├── useApi.ts
-│   └── types.ts
-├── useLocalStorage/
-├── useDebounce/
-└── useMediaQuery/
-```
-
-### `services/`
-```bash
-services/
-├── api/
-│   ├── client/
-│   │   ├── index.ts
-│   │   ├── axios.ts
-│   │   └── interceptors.ts
-│   ├── endpoints.ts
-│   └── types/
+│       ├── common.types.ts
 │       └── api.types.ts
-└── storage/
-    ├── localStorage.ts
-    └── sessionStorage.ts
-```
-
-### `store/`
-```bash
-store/
-├── slices/
-│   ├── user/
-│   │   ├── userSlice.ts
-│   │   └── userSelectors.ts
-│   └── app/
-│       ├── appSlice.ts
-│       └── appSelectors.ts
-├── middleware/
-│   └── logger.ts
-└── store.ts
-```
-
-### `utils/`
-```bash
-utils/
-├── helpers/
-│   ├── date.ts
-│   ├── string.ts
-│   ├── number.ts
-│   └── validation.ts
-├── constants/
-│   ├── routes.ts
-│   ├── config.ts
-│   └── api.ts
-└── types/
-    ├── common.types.ts
-    └── api.types.ts
-```
-
-### `pages/`
-```bash
-pages/
-├── Home/
-│   ├── index.tsx
-│   ├── components/
-│   └── styles.module.css
-├── Dashboard/
-│   ├── index.tsx
-│   ├── components/
-│   └── SubPages/
-│       ├── Analytics/
-│       └── Settings/
-└── Profile/
-```
-
-### `routes/`
-```bash
-routes/
-├── PrivateRoute.tsx      # Protected route wrapper
-├── PublicRoute.tsx       # Public route wrapper
-├── AppRoutes.tsx         # Main routing config
-└── routeConfig.ts        # Route definitions
-```
-
-### `config/`
-```bash
-config/
-├── env.ts               # Environment variables
-├── theme.ts             # Theme configuration
-├── i18n.ts             # Internationalization
-└── constants.ts         # Global constants
-```
-
-### `types/`
-```bash
-types/
-├── global.d.ts          # Global declarations
-├── env.d.ts            # Environment types
-└── styled.d.ts         # Style system types
+│
+├── pages/
+│   ├── Home/
+│   │   ├── index.tsx
+│   │   ├── components/        # Page-specific components
+│   │   └── styles.module.css
+│   ├── Dashboard/
+│   │   ├── index.tsx
+│   │   ├── components/
+│   │   └── SubPages/
+│   │       ├── Analytics/
+│   │       └── Settings/
+│   └── Profile/
+│
+├── routes/
+│   ├── PrivateRoute.tsx
+│   ├── PublicRoute.tsx
+│   ├── AppRoutes.tsx          # Main routing configuration
+│   └── routeConfig.ts         # Route definitions
+│
+├── config/
+│   ├── env.ts                 # Environment variables
+│   ├── theme.ts               # Theme configuration
+│   ├── i18n.ts               # Internationalization config
+│   └── constants.ts           # Global constants
+│
+├── types/
+│   ├── global.d.ts            # Global type declarations
+│   ├── env.d.ts              # Environment variables types
+│   └── styled.d.ts           # Styled-components types
+│
+├── App.tsx
+├── index.tsx
+└── vite-env.d.ts             # If using Vite
 ```
 
 ## 📝 Key Principles
