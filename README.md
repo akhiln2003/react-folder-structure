@@ -1,214 +1,242 @@
-# Advanced React Project Structure
+# React Project Folder Structure Guide
 
-## 🎯 Overview
-A modern, scalable, and maintainable folder structure for enterprise-level React applications. This structure follows feature-first architecture and supports TypeScript, testing, and component isolation.
+## 📋 Overview
+A comprehensive and scalable folder structure for React applications. This structure focuses on maintainability, scalability, and clear separation of concerns.
 
-## 📁 Folder Structure
-
+## 📁 Root Structure
 ```bash
 src/
-├── assets/                     # Static assets
-│   ├── images/                # Image files
-│   ├── icons/                 # Icon files
-│   ├── fonts/                 # Font files
-│   └── locales/              # i18n translation files
-│
-├── components/
-│   ├── common/               # Shared/reusable components
-│   │   ├── Button/
-│   │   │   ├── Button.tsx
-│   │   │   ├── Button.test.tsx
-│   │   │   ├── Button.styles.ts
-│   │   │   └── index.ts
-│   │   └── Modal/
-│   ├── features/            # Feature-specific components
-│   │   ├── Auth/
-│   │   └── Dashboard/
-│   └── layouts/            # Layout templates
-│       ├── MainLayout/
-│       └── AuthLayout/
-│
-├── config/                 # Configuration files
-│   ├── environment.ts      # Environment variables
-│   ├── constants.ts        # App constants
-│   └── api.config.ts       # API configuration
-│
-├── hooks/                  # Custom React hooks
-│   ├── common/            # Shared hooks
-│   │   ├── useLocalStorage.ts
-│   │   └── useFetch.ts
-│   └── features/          # Feature-specific hooks
-│       ├── useAuth.ts
-│       └── useProfile.ts
-│
-├── pages/                 # Application pages
-│   ├── public/           # Public access pages
-│   │   ├── Home/
-│   │   └── About/
-│   └── protected/        # Authentication required pages
-│       └── Dashboard/
-│           ├── components/
-│           ├── hooks/
-│           ├── utils/
-│           ├── types/
-│           └── index.tsx
-│
-├── services/             # API and external services
-│   ├── api/
-│   │   ├── client.ts
-│   │   ├── endpoints.ts
-│   │   └── interceptors.ts
-│   └── features/
-│       ├── auth.service.ts
-│       └── user.service.ts
-│
-├── store/               # State management
-│   ├── features/       # Feature-based store modules
-│   │   ├── auth/
-│   │   └── user/
-│   ├── hooks.ts
-│   └── store.ts
-│
-├── styles/             # Styling and theming
-│   ├── theme/         # Theme configurations
-│   ├── foundations/   # Design system foundations
-│   └── global.css     # Global styles
-│
-├── types/             # TypeScript type definitions
-│   ├── common/       # Shared types
-│   └── features/     # Feature-specific types
-│
-├── utils/            # Utility functions
-│   ├── common/      # Shared utilities
-│   └── features/    # Feature-specific utilities
-│
-├── routes/          # Routing configuration
-├── contexts/        # React Context providers
-└── lib/            # Third-party library configs
+├── assets/              # Static assets (images, fonts, styles)
+├── components/          # Shared components
+├── features/           # Feature-based modules
+├── hooks/              # Custom React hooks
+├── services/           # API and services
+├── store/              # State management
+├── utils/              # Utility functions
+├── pages/              # Application pages
+├── routes/             # Routing configuration
+├── config/             # App configuration
+├── types/              # TypeScript definitions
+├── App.tsx             # Root component
+└── index.tsx           # Entry point
 ```
 
-## 📚 Directory Details
+## 📂 Directory Details
 
 ### `assets/`
-- `images/`: Application images and photos
-- `icons/`: SVG and other icon files
-- `fonts/`: Custom font files
-- `locales/`: Internationalization translation files
-
-### `components/`
-- `common/`: Reusable components used across features
-  - Each component has its own folder with:
-    - Component file (`.tsx`)
-    - Test file (`.test.tsx`)
-    - Styles file (`.styles.ts`)
-    - Index file for clean exports
-- `features/`: Feature-specific components
-- `layouts/`: Page layout templates
-
-### `config/`
-- Environment configurations
-- API settings
-- Constants and app-wide configurations
-
-### `hooks/`
-- `common/`: Shared custom hooks
-- `features/`: Feature-specific custom hooks
-
-### `pages/`
-- `public/`: Publicly accessible pages
-- `protected/`: Authentication-required pages
-  - Each page can have its own:
-    - Components
-    - Hooks
-    - Utils
-    - Types
-
-### `services/`
-- API client configuration
-- Service implementations
-- API interceptors
-- Feature-specific services
-
-### `store/`
-- Redux/state management setup
-- Feature-based store organization
-- Custom store hooks
-- Selectors and actions
-
-### `styles/`
-- Theme configuration
-- Design tokens
-- Global styles
-- CSS foundations
-
-### `types/`
-- TypeScript interfaces
-- Type definitions
-- Shared types
-- Feature-specific types
-
-### `utils/`
-- Helper functions
-- Formatters
-- Validators
-- Feature-specific utilities
-
-### `routes/`
-- Route configurations
-- Route guards
-- Navigation logic
-
-### `contexts/`
-- React Context providers
-- Global state management
-
-### `lib/`
-- Third-party library configurations
-- Service initializations
-
-## 🚀 Best Practices
-
-1. **Component Structure**
-```typescript
-// index.ts
-export { default } from './ComponentName';
-
-// ComponentName.tsx
-import { FC } from 'react';
-import * as S from './ComponentName.styles';
-
-interface Props {
-  // props interface
-}
-
-const ComponentName: FC<Props> = ({ }) => {
-  return (
-    // component JSX
-  );
-};
-
-export default ComponentName;
-
-// ComponentName.styles.ts
-import styled from 'styled-components';
-
-export const Container = styled.div`
-  // styles
-`;
+```bash
+assets/
+├── images/
+│   ├── logos/          # Logo variations
+│   ├── icons/          # Icon assets
+│   └── backgrounds/    # Background images
+├── fonts/
+│   ├── roboto/         # Font family files
+│   └── poppins/
+└── styles/
+    ├── global.css      # Global styles
+    ├── variables.css   # CSS variables
+    ├── animations.css  # Global animations
+    └── themes/
+        ├── light.css   # Light theme
+        └── dark.css    # Dark theme
 ```
 
-2. **Feature Organization**
-- Keep related code together
-- Each feature should be independent
-- Share common code through common/ directories
+### `components/`
+```bash
+components/
+├── common/             # Shared components
+│   ├── Button/
+│   │   ├── index.ts
+│   │   ├── Button.tsx
+│   │   ├── Button.test.tsx
+│   │   ├── Button.stories.tsx
+│   │   ├── Button.module.css
+│   │   └── types.ts
+│   ├── Input/
+│   ├── Modal/
+│   ├── Card/
+│   ├── Table/
+│   └── Form/
+│       ├── TextField/
+│       ├── Select/
+│       ├── Checkbox/
+│       └── RadioGroup/
+└── layout/
+    ├── Header/
+    │   ├── index.ts
+    │   ├── Header.tsx
+    │   ├── components/
+    │   │   ├── Navigation/
+    │   │   └── UserMenu/
+    │   └── styles.module.css
+    ├── Footer/
+    ├── Sidebar/
+    └── PageWrapper/
+```
 
-3. **Type Safety**
-- Use TypeScript for all files
-- Create comprehensive interfaces
-- Leverage type inference
+### `features/`
+```bash
+features/
+├── auth/              # Authentication feature
+│   ├── components/
+│   │   ├── LoginForm/
+│   │   ├── RegisterForm/
+│   │   └── ForgotPassword/
+│   ├── services/
+│   │   ├── authService.ts
+│   │   └── authApi.ts
+│   ├── hooks/
+│   │   ├── useAuth.ts
+│   │   └── useAuthForm.ts
+│   ├── store/
+│   │   ├── authSlice.ts
+│   │   └── authSelectors.ts
+│   └── types/
+│       └── auth.types.ts
+└── dashboard/         # Dashboard feature
+    ├── components/
+    │   ├── DashboardStats/
+    │   ├── RecentActivity/
+    │   └── Charts/
+    ├── services/
+    ├── hooks/
+    └── types/
+```
 
-4. **Testing**
-- Co-locate tests with components
-- Use meaningful test descriptions
-- Follow AAA pattern (Arrange, Act, Assert)
+### `hooks/`
+```bash
+hooks/
+├── useApi/
+│   ├── index.ts
+│   ├── useApi.ts
+│   └── types.ts
+├── useLocalStorage/
+├── useDebounce/
+└── useMediaQuery/
+```
 
+### `services/`
+```bash
+services/
+├── api/
+│   ├── client/
+│   │   ├── index.ts
+│   │   ├── axios.ts
+│   │   └── interceptors.ts
+│   ├── endpoints.ts
+│   └── types/
+│       └── api.types.ts
+└── storage/
+    ├── localStorage.ts
+    └── sessionStorage.ts
+```
+
+### `store/`
+```bash
+store/
+├── slices/
+│   ├── user/
+│   │   ├── userSlice.ts
+│   │   └── userSelectors.ts
+│   └── app/
+│       ├── appSlice.ts
+│       └── appSelectors.ts
+├── middleware/
+│   └── logger.ts
+└── store.ts
+```
+
+### `utils/`
+```bash
+utils/
+├── helpers/
+│   ├── date.ts
+│   ├── string.ts
+│   ├── number.ts
+│   └── validation.ts
+├── constants/
+│   ├── routes.ts
+│   ├── config.ts
+│   └── api.ts
+└── types/
+    ├── common.types.ts
+    └── api.types.ts
+```
+
+### `pages/`
+```bash
+pages/
+├── Home/
+│   ├── index.tsx
+│   ├── components/
+│   └── styles.module.css
+├── Dashboard/
+│   ├── index.tsx
+│   ├── components/
+│   └── SubPages/
+│       ├── Analytics/
+│       └── Settings/
+└── Profile/
+```
+
+### `routes/`
+```bash
+routes/
+├── PrivateRoute.tsx      # Protected route wrapper
+├── PublicRoute.tsx       # Public route wrapper
+├── AppRoutes.tsx         # Main routing config
+└── routeConfig.ts        # Route definitions
+```
+
+### `config/`
+```bash
+config/
+├── env.ts               # Environment variables
+├── theme.ts             # Theme configuration
+├── i18n.ts             # Internationalization
+└── constants.ts         # Global constants
+```
+
+### `types/`
+```bash
+types/
+├── global.d.ts          # Global declarations
+├── env.d.ts            # Environment types
+└── styled.d.ts         # Style system types
+```
+
+## 📝 Key Principles
+
+1. **Component Organization**
+   - Common components are reusable across features
+   - Layout components handle structural elements
+   - Each component has its own directory with related files
+
+2. **Feature-First Architecture**
+   - Features contain all related code
+   - Each feature is self-contained
+   - Features can have their own components, services, and types
+
+3. **Clear Separation of Concerns**
+   - Services handle external communication
+   - Hooks manage reusable logic
+   - Utils contain helper functions
+   - Types ensure consistency
+
+4. **Page Organization**
+   - Pages represent routes
+   - Sub-pages handle nested routes
+   - Page-specific components stay with their pages
+
+5. **Asset Management**
+   - Images are categorized by type
+   - Styles are separated by scope
+   - Themes are clearly defined
+
+6. **Type Safety**
+   - Global types in `/types`
+   - Feature-specific types within features
+   - Component types alongside components
+
+This structure provides a scalable foundation for React applications of any size while maintaining clarity and organization.
